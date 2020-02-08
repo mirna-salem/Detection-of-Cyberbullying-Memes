@@ -1,0 +1,17 @@
+The allignment script is made up of several functions that perform different tasks.
+The first function called is the main method. Inside the main, we call a different 
+function that opens and reads the file and returns a list of OCR transcriptions, 
+our transcriptions, and the titles of the images back to the main method. Then the main
+method calls the clean function which takes in the transcriptions and returns a "cleaned"
+version of them. Basically, it just removes any unncessary spaces and makes all the letters 
+lowercase. This is done to avoid any possible errors when we calculate the mismatches later on.
+After cleaning the transcriptions up, they are sent over to the alignment function
+which uses the Longest Common Subsequence(LCS) algorithm as well as a Hamming Distance algorithm. 
+The goal of the LCS is to maximize the number of matches by "alligning" the two strings with the
+use of a scoring matrix and a backtrack matrix. A weight of 1 is assigned to all the matches and 
+a weight of 0 is assigned to the mismatches. In order to create the strings with the indels(inserts/deletions),
+we must retrace our steps back to the sink(start of matrix), and we do this by using the backtrack matrix. 
+A Hamming Distance algorithm was also used to count the number of mismatches in the strings created from the
+backtrack matrix. This allignment function returns the number of mismatches and the length of our transcription 
+which are divided and subtracted from 1 and then multiplied by 100 to obtain a percentage. All this data ends up
+being written in a different file.
